@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { usersAPI } from '@/api/user.api';
-import { toast } from 'sonner';
+import { SkeletonView } from '@/components/skeleton';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { SkeletonView } from '@/components/skeleton';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export default function UserDetail() {
   const { id } = useParams();
@@ -19,7 +19,6 @@ export default function UserDetail() {
     queryKey: ['usersDetails', id],
     queryFn: () => usersAPI.getUserDetails(id as unknown as number),
   });
-  console.log('getUserDetail:', getUserDetail?.id);
   const [name, setName] = useState(getUserDetail?.name || '');
   const [email, setEmail] = useState(getUserDetail?.email || '');
   const [role, setRole] = useState(getUserDetail?.role.name || '');

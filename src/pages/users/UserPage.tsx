@@ -12,27 +12,26 @@ import {
 } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronDown } from 'lucide-react';
 
-import { useState } from 'react';
-import { format } from 'date-fns';
 import {
   InvalidateQueryFilters,
   useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { toast } from 'sonner';
-import { Input } from '@/components/ui/input';
 import { usersAPI } from '@/api/user.api';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -41,6 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { toast } from 'sonner';
 
 export type UserType = {
   id: string;
@@ -201,6 +201,7 @@ export function UserPage() {
   });
 
   const deleteMutation = useMutation({
+    mutationKey: ['usersDelete'],
     mutationFn: (id: number) => usersAPI.deleteUser(id),
   });
 
